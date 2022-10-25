@@ -24,7 +24,7 @@ class UsersRepository implements IUsersRepository {
     Object.assign(user, {
       name,
       email,
-      create_at: new Date(),
+      created_at: new Date(),
       updated_at: new Date(),
     });
 
@@ -34,19 +34,23 @@ class UsersRepository implements IUsersRepository {
   }
 
   findById(id: string): User | undefined {
-    // Complete aqui
+    return this.users.find((user) => user.id === id);
   }
 
   findByEmail(email: string): User | undefined {
-    // Complete aqui
+    return this.users.find((user) => user.email === email);
   }
 
   turnAdmin(receivedUser: User): User {
-    // Complete aqui
+    const user = receivedUser;
+    user.admin = true;
+    user.updated_at = new Date();
+
+    return user;
   }
 
   list(): User[] {
-    // Complete aqui
+    return this.users;
   }
 }
 
